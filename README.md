@@ -8,7 +8,7 @@ The signup page allows users to create an account by providing their name, email
 
 The sign-in page verifies user credentials against the stored account information. If the provided email and password match an existing user, the user is directed to the home page.
 
-The home page displays a welcome message using the user's name retrieved from local storage. Users can also log out from the home page, which redirects them to the sign-in page.
+The home page displays a welcome message using the user's name retrieved from local storage. Users can also log out from the home page, which redirects them to the sign-in pages.
 
 ## Technologies Used
 
