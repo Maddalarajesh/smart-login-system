@@ -1,0 +1,19 @@
+{
+  "name": "smart-login-system",
+  "version": "1.0.0",
+  "description": "Smart Login System with Cypress Automation",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=8080",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^15.0.0",
+    "live-server": "^1.2.2",
+    "wait-on": "^8.0.0"
+  }
+}
