@@ -1,0 +1,17 @@
+{
+  "name": "smart-login-system",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "live-server --port=8080",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^15.15.0",
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "esbuild": "^0.25.0",
+    "live-server": "^1.2.2",
+    "wait-on": "^8.0.0"
+  }
+}
