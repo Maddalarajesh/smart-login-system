@@ -6,7 +6,7 @@ describe("Utility Function Tests", () => {
   });
 
   test("should reject invalid email", () => {
-    expect(isValidEmail("rajeshgmail")).toBe(false);
+    expect(isValidEmail("rajesh@gmail")).toBe(false);
   });
 
   test("should return false for duplicate email", () => {
