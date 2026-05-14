@@ -25,6 +25,10 @@ jobs:
         run: |
           npm install
 
+      # - name: 🧪 Run Unit Tests
+      #   run: |
+      #     npm test
+
       - name: 🌐 Install Live Server
         run: |
           npm install live-server --save-dev
@@ -44,15 +48,17 @@ jobs:
           browser: chrome
 
       - name: 📸 Upload Cypress Screenshots
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
           path: cypress/screenshots
+          if-no-files-found: ignore
 
       - name: 🎥 Upload Cypress Videos
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
+          if-no-files-found: ignore
