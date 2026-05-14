@@ -16,7 +16,7 @@ The home page displays a welcome message using the user's name retrieved from lo
 - CSS
 - JavaScript
 
-## Project Structure
+## Project Structures
 
 The project consists of the following files:
 
