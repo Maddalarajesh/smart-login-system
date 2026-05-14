@@ -28,10 +28,10 @@ describe("Smart Login System", () => {
       },
     ];
 
-    cy.visit("/index.html");
-
-    cy.window().then((win) => {
-      win.localStorage.setItem("users", JSON.stringify(users));
+    cy.visit("/index.html", {
+      onBeforeLoad(win) {
+        win.localStorage.setItem("users", JSON.stringify(users));
+      },
     });
 
     cy.get("#loginEmail").type("rajesh@gmail.com");
