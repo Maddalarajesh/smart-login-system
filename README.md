@@ -10,7 +10,7 @@ The sign-in page verifies user credentials against the stored account informatio
 
 The home page displays a welcome message using the user's name retrieved from local storage. Users can also log out from the home page, which redirects them to the sign-in page.
 
-## Technologies Used
+## Technologie Used
 
 - HTML
 - CSS
