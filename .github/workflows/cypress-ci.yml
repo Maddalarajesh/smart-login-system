@@ -1,0 +1,59 @@
+name: 🚀 Cypress CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  cypress-tests:
+    name: 🧪 Run Cypress Tests
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm install
+
+      - name: 🌐 Install Live Server
+        run: |
+          npm install live-server --save-dev
+
+      - name: 🚀 Start Application
+        run: |
+          npx live-server --port=8080 &
+        shell: bash
+
+      - name: ⏳ Wait for App to Start
+        run: |
+          npx wait-on http://127.0.0.1:8080
+
+      - name: 🧪 Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+
+      - name: 📸 Upload Cypress Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: 🎥 Upload Cypress Videos
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
