@@ -3,7 +3,7 @@ name: 🚀 Cypress Cucumber CI Pipeline
 on:
   pull_request:
     branches:
-      - develop
+      - cucumber
 
 jobs:
   cypress-tests:
