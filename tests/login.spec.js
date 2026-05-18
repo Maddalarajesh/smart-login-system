@@ -4,7 +4,7 @@ test.describe("Smart Login System", () => {
 
   test.beforeEach(async ({ page }) => {
     // Clear localStorage before every test
-    await page.goto("http://127.0.0.1:3000");
+    await page.goto("http://127.0.0.1:8080");
 
     await page.evaluate(() => {
       localStorage.clear();
@@ -18,7 +18,7 @@ test.describe("Smart Login System", () => {
   test("User signup successfully", async ({ page }) => {
 
     // Open signup page
-    await page.goto("http://127.0.0.1:3000/signup.html");
+    await page.goto("http://127.0.0.1:8080/signup.html");
 
     // Enter signup details
     await page.fill("#signupName", "Rajesh");
