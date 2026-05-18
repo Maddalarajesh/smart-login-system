@@ -5,27 +5,25 @@ module.exports = defineConfig({
 
   timeout: 30000,
 
-  use: {
-    baseURL: "http://127.0.0.1:8080",
-    headless: true,
-
-    screenshot: "only-on-failure",
-
-    video: "retain-on-failure",
-
-    trace: "retain-on-failure",
-  },
+  retries: 0,
 
   reporter: [
-    ["list"],
     ["html"],
-    ["allure-playwright"]
+    ["line"],
+    ["allure-playwright"],
   ],
 
-  webServer: {
-    command: "npm run dev",
-    url: "http://127.0.0.1:8080",
-    reuseExistingServer: true,
-    timeout: 120000,
+  use: {
+    baseURL: "http://127.0.0.1:8080",
+
+    headless: true,
+
+    screenshot: "on",
+
+    video: "on",
+
+    trace: "on",
   },
+
+  outputDir: "test-results/",
 });
