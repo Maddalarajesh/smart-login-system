@@ -32,8 +32,8 @@ jobs:
       # =========================
       - name: 📦 Install Dependencies
         run: npm install
-      - name : build app
-        run: npm run build
+      # - name : build app
+      #   run: npm run build
       - name : start app
         run: npm start &
 
