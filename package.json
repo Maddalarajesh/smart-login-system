@@ -20,7 +20,7 @@
     "@playwright/test": "^1.55.0",
     "allure-commandline": "^2.34.1",
     "allure-playwright": "^3.4.1",
-    "cypress": "^15.15.0",
+    "cypress": "^14.5.4",
     "esbuild": "^0.25.0",
     "live-server": "^1.2.2",
     "wait-on": "^8.0.0"
