@@ -3,9 +3,11 @@ const { test, expect } = require("@playwright/test");
 test.describe("Smart Login System", () => {
 
   test.beforeEach(async ({ page }) => {
-    // Clear localStorage before every test
-    await page.goto("http://127.0.0.1:8080");
 
+    // Open application
+    await page.goto("http://127.0.0.1:8080/index.html");
+
+    // Clear localStorage before every test
     await page.evaluate(() => {
       localStorage.clear();
     });
@@ -20,7 +22,7 @@ test.describe("Smart Login System", () => {
     // Open signup page
     await page.goto("http://127.0.0.1:8080/signup.html");
 
-    // Enter signup details
+    // Fill signup form
     await page.fill("#signupName", "Rajesh");
 
     await page.fill("#signupEmail", "rajesh@gmail.com");
@@ -30,12 +32,12 @@ test.describe("Smart Login System", () => {
     // Click signup button
     await page.click("#signupBtn");
 
-    // Validate localStorage
+    // Validate user stored in localStorage
     const users = await page.evaluate(() => {
       return JSON.parse(localStorage.getItem("users"));
     });
 
-    expect(users[0].email).toBe("rajesh@gmail.com");
+    await expect(users[0].email).toBe("rajesh@gmail.com");
   });
 
   // =========================
@@ -44,10 +46,12 @@ test.describe("Smart Login System", () => {
 
   test("User login successfully", async ({ page }) => {
 
-    // Add mock user to localStorage
+    // Open login page
     await page.goto("http://127.0.0.1:8080/index.html");
 
+    // Add mock user BEFORE login
     await page.evaluate(() => {
+
       const users = [
         {
           name: "Rajesh",
@@ -59,6 +63,9 @@ test.describe("Smart Login System", () => {
       localStorage.setItem("users", JSON.stringify(users));
     });
 
+    // Reload page so application reads updated localStorage
+    await page.reload();
+
     // Enter login credentials
     await page.fill("#loginEmail", "rajesh@gmail.com");
 
@@ -67,12 +74,13 @@ test.describe("Smart Login System", () => {
     // Click login button
     await page.click("#loginBtn");
 
-    // Verify redirect
-    await page.waitForURL(/home.html/, {
+    // Wait for redirect
+    await page.waitForURL("**/home.html", {
       timeout: 10000,
     });
 
-    await expect(page).toHaveURL(/home.html/);
+    // Verify redirect success
+    await expect(page).toHaveURL(/home\.html/);
   });
 
   // =========================
@@ -89,7 +97,7 @@ test.describe("Smart Login System", () => {
 
     await page.fill("#loginPassword", "wrongpassword");
 
-    // Click login
+    // Click login button
     await page.click("#loginBtn");
 
     // Verify error message
