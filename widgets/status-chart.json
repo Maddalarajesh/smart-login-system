@@ -1,1 +1,1 @@
-[]
+[{"uid":"69d4244a4ca11c8c","name":"User signup successfully","time":{"start":1779702844543,"stop":1779702845509,"duration":966},"status":"passed","severity":"normal"},{"uid":"d3c02c113981bacd","name":"Invalid login attempt","time":{"start":1779702859379,"stop":1779702860286,"duration":907},"status":"passed","severity":"normal"},{"uid":"be1fe4ffea9f9f87","name":"User login successfully","time":{"start":1779702846780,"stop":1779702858390,"duration":11610},"status":"failed","severity":"normal"}]
