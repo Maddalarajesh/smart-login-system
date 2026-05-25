@@ -5,7 +5,7 @@ test.describe("Smart Login System", () => {
   test.beforeEach(async ({ page }) => {
 
     // Open application
-    await page.goto("http://127.0.0.1:8080/index.html");
+    await page.goto("/");
 
     // Clear localStorage before every test
     await page.evaluate(() => {
