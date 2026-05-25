@@ -36,7 +36,8 @@ jobs:
       # =====================================
       - name: 📦 Install Dependencies
         run: npm install
-
+      - name: run Dependencies
+        run: npm start&
       # =====================================
       # Install Playwright Browsers
       # =====================================
