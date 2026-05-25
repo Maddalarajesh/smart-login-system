@@ -7,100 +7,45 @@ on:
 
 jobs:
   playwright-tests:
-    name: 🧪 Playwright Tests + Allure Report
     runs-on: ubuntu-latest
-
-    timeout-minutes: 30
 
     permissions:
       contents: write
 
     steps:
 
-      # =====================================
-      # Checkout Repository
-      # =====================================
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      # =====================================
-      # Setup Node.js
-      # =====================================
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # =====================================
-      # Install Dependencies
-      # =====================================
       - name: 📦 Install Dependencies
         run: npm install
-      - name: run Dependencies
-        run: npm start&
-      # =====================================
-      # Install Playwright Browsers
-      # =====================================
+
       - name: 🌐 Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # =====================================
-      # Run Playwright Tests
-      # =====================================
       - name: 🧪 Run Playwright Tests
         run: npx playwright test
 
-      # =====================================
-      # Install Allure CLI
-      # =====================================
       - name: 📥 Install Allure CLI
         if: always()
         run: npm install -g allure-commandline
 
-      # =====================================
-      # Generate Allure Report
-      # =====================================
       - name: 📊 Generate Allure Report
         if: always()
-        run: allure generate allure-results --clean -o allure-report
+        run: |
+          if [ -d "allure-results" ] && [ "$(ls -A allure-results)" ]; then
+            allure generate allure-results --clean -o allure-report
+          else
+            mkdir allure-report
+            echo "<h1>No Allure Results Found</h1>" > allure-report/index.html
+          fi
 
-      # =====================================
-      # Upload Playwright HTML Report
-      # =====================================
-      - name: 📦 Upload Playwright HTML Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report
-          retention-days: 7
-
-      # =====================================
-      # Upload Test Results / Screenshots
-      # =====================================
-      - name: 📸 Upload Test Results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results
-          retention-days: 7
-
-      # =====================================
-      # Upload Allure Report
-      # =====================================
-      - name: 📦 Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-          retention-days: 7
-
-      # =====================================
-      # Deploy Allure Report to GitHub Pages
-      # =====================================
-      - name: 🚀 Deploy Allure Report to GitHub Pages
+      - name: 🚀 Deploy Allure Report
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
