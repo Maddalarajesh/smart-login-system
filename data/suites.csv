@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1133","Invalid login attempt","","2026-05-26","passed","2026-05-26","Smart Login System","login.spec.js","",""
-"","1290","User signup successfully","","2026-05-26","passed","2026-05-26","Smart Login System","login.spec.js","",""
-"","1367","User login successfully","","2026-05-26","passed","2026-05-26","Smart Login System","login.spec.js","",""
+"","887","Invalid login attempt","","2026-05-28","passed","2026-05-28","Smart Login System","login.spec.js","",""
+"","11266","User login successfully","","2026-05-28","failed","2026-05-28","Smart Login System","login.spec.js","",""
+"","958","User signup successfully","","2026-05-28","passed","2026-05-28","Smart Login System","login.spec.js","",""
