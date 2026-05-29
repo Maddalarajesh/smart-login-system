@@ -1,8 +1,4 @@
-ENABLE:
-  - JAVASCRIPT
-  - JSON
-  - YAML
-  - MARKDOWN
-  - GITHUB_ACTIONS
-
 VALIDATE_ALL_CODEBASE: true
+
+FILTER_REGEX_EXCLUDE: |
+  (node_modules|dist|build|coverage|playwright-report|allure-report|allure-results)
