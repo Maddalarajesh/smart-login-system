@@ -7,7 +7,6 @@ on:
 
 jobs:
   megalinter:
-    name: MegaLinter
     runs-on: ubuntu-latest
 
     permissions:
@@ -29,17 +28,12 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install --save-dev eslint
+          npm install eslint --save-dev
 
       - name: Run MegaLinter
         uses: oxsecurity/megalinter@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-          VALIDATE_ALL_CODEBASE: false
-
-          MEGALINTER_FLAVOR: javascript
-
+          VALIDATE_ALL_CODEBASE: true
+          ENABLE_LINTERS: JAVASCRIPT_ES
           APPLY_FIXES: none
-
-          PRINT_ALPACA: false
