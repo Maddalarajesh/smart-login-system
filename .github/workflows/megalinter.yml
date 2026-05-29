@@ -21,12 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Step 2: Fix TruffleHog Secret Scanner configuration for Pull Requests
+      # Step 2: Updated TruffleHog with explicit fail and base control flags
       - name: Scan for Leaked Secrets (TruffleHog)
         uses: trufflesecurity/trufflehog@main
         with:
           base: ${{ github.event.pull_request.base.sha }}
           head: ${{ github.sha }}
+          extra_args: --fail --debug # Force an exit code failure if ANY secret pattern is found
 
       # Step 3: Initialize Runtime Environment
       - name: Setup Node.js
@@ -42,7 +43,7 @@ jobs:
           
       # Step 5: Execute Code Quality Analysis Umbrella
       - name: Run MegaLinter
-        uses: oxsecurity/megalinter@v8 # Uses stable v8 runner or your targeted version tag
+        uses: oxsecurity/megalinter@v8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
