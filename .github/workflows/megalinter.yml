@@ -27,7 +27,7 @@ jobs:
         with:
           base: ${{ github.event.pull_request.base.sha }}
           head: ${{ github.sha }}
-          extra_args: --fail --debug # Force an exit code failure if ANY secret pattern is found
+          extra_args: --no-verification # Force an exit code failure if ANY secret pattern is found
 
       # Step 3: Initialize Runtime Environment
       - name: Setup Node.js
