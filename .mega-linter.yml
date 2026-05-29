@@ -5,12 +5,4 @@ ENABLE:
   - MARKDOWN
   - GITHUB_ACTIONS
 
-DISABLE:
-  - SPELL
-
-FILTER_REGEX_EXCLUDE: |
-  (node_modules|dist|build|coverage|playwright-report|allure-report|allure-results)
-
-APPLY_FIXES: none
-
-VALIDATE_ALL_CODEBASE: false
+VALIDATE_ALL_CODEBASE: true
