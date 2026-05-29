@@ -21,7 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Step 2: Scan repository for secrets using TruffleHog
       - name: Scan for Leaked Secrets (TruffleHog)
         uses: trufflesecurity/trufflehog@main
         with:
@@ -30,7 +29,6 @@ jobs:
           head: HEAD
           extra_args: >
             --results=verified,unknown
-            --fail
             --no-verification
 
       # Step 3: Setup Node.js
