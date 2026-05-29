@@ -15,29 +15,34 @@ jobs:
       checks: write
 
     steps:
+      # Step 1: Checkout the full git history safely
       - name: Checkout Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Step 2: Fix TruffleHog Secret Scanner configuration for Pull Requests
+      - name: Scan for Leaked Secrets (TruffleHog)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          base: ${{ github.event.pull_request.base.sha }}
+          head: ${{ github.sha }}
+
+      # Step 3: Initialize Runtime Environment
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # Step 4: Provision Local Node Packages
       - name: Install Dependencies
         run: |
           npm install
           npm install eslint --save-dev
           
-      - name: Scan for Leaked Secrets (TruffleHog)
-        uses: trufflesecurity/trufflehog-actions@main
-        with:
-          base: ""
-          head: ${{ github.ref_name }}    
-
+      # Step 5: Execute Code Quality Analysis Umbrella
       - name: Run MegaLinter
-        uses: oxsecurity/megalinter@v9
+        uses: oxsecurity/megalinter@v8 # Uses stable v8 runner or your targeted version tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
