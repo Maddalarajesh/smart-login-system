@@ -35,11 +35,7 @@ jobs:
         uses: oxsecurity/megalinter@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
           VALIDATE_ALL_CODEBASE: false
-
           MEGALINTER_FLAVOR: javascript
-
           APPLY_FIXES: none
-
           PRINT_ALPACA: false
