@@ -25,9 +25,8 @@ jobs:
       - name: Scan for Leaked Secrets (TruffleHog)
         uses: trufflesecurity/trufflehog@main
         with:
-          base: ${{ github.event.pull_request.base.sha }}
-          head: ${{ github.sha }}
-          extra_args: --no-verification # Force an exit code failure if ANY secret pattern is found
+          path: ./
+          extra_args: --no-verification
 
       # Step 3: Initialize Runtime Environment
       - name: Setup Node.js
