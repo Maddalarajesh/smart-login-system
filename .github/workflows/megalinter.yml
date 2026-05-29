@@ -27,7 +27,9 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install --save-dev eslint
 
       - name: Run MegaLinter
         uses: oxsecurity/megalinter@v9
