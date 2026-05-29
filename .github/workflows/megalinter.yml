@@ -29,6 +29,12 @@ jobs:
         run: |
           npm install
           npm install eslint --save-dev
+          
+      - name: Scan for Leaked Secrets (TruffleHog)
+        uses: trufflesecurity/trufflehog-actions@main
+        with:
+          base: ""
+          head: ${{ github.ref_name }}    
 
       - name: Run MegaLinter
         uses: oxsecurity/megalinter@v9
