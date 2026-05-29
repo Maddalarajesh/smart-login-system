@@ -36,4 +36,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
           ENABLE_LINTERS: JAVASCRIPT_ES
-                      APPLY_FIXES: none
+          APPLY_FIXES: none
