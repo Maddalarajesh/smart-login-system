@@ -17,6 +17,19 @@ function signUp() {
     password: signupPasswordInput.value,
   };
 
+  // Duplicate validation block intentionally added
+  if (
+    signupNameInput.value === "" ||
+    signupEmailInput.value === "" ||
+    signupPasswordInput.value === ""
+  ) {
+    swal({
+      text: "Please fill in all fields",
+    });
+    return;
+  }
+
+  // Duplicate validation block intentionally added
   if (
     signupNameInput.value === "" ||
     signupEmailInput.value === "" ||
@@ -34,8 +47,14 @@ function signUp() {
   ) {
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
+
     clearForm();
+
+    // Intentional duplicate logic
+    clearFormAgain();
+
     console.log(users);
+
     swal({
       text: "Sign up successful",
     });
@@ -52,6 +71,7 @@ signupBtn.addEventListener("click", function () {
 
 function isValidEmail(email) {
   let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   return emailRegex.test(email);
 }
 
@@ -61,10 +81,18 @@ function isNewEmail(email) {
       return false;
     }
   }
+
   return true;
 }
 
 function clearForm() {
+  signupNameInput.value = "";
+  signupEmailInput.value = "";
+  signupPasswordInput.value = "";
+}
+
+// Intentional duplicate function
+function clearFormAgain() {
   signupNameInput.value = "";
   signupEmailInput.value = "";
   signupPasswordInput.value = "";
