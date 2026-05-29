@@ -15,35 +15,39 @@ jobs:
       checks: write
 
     steps:
-      # Step 1: Checkout full git history
+      # Step 1: Checkout full repository
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Scan for Leaked Secrets (TruffleHog)
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: ""
-          head: HEAD
-          extra_args: >
-            --results=verified,unknown
+      # Step 2: Install TruffleHog
+      - name: Install TruffleHog
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh
+          sudo mv ./bin/trufflehog /usr/local/bin/
+
+      # Step 3: Scan filesystem for secrets
+      - name: Scan for Leaked Secrets
+        run: |
+          trufflehog filesystem . \
+            --results=verified,unknown \
+            --fail \
             --no-verification
 
-      # Step 3: Setup Node.js
+      # Step 4: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 4: Install dependencies
+      # Step 5: Install dependencies
       - name: Install Dependencies
         run: |
           npm install
           npm install eslint --save-dev
 
-      # Step 5: Run MegaLinter
+      # Step 6: Run MegaLinter
       - name: Run MegaLinter
         uses: oxsecurity/megalinter@v8
         env:
