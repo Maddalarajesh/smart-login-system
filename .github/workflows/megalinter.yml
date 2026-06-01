@@ -21,6 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Step 1b: Scan with GitGuardian ggshield
+      - name: GitGuardian Scan
+        uses: GitGuardian/ggshield-action@v1.31.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+
       # Step 2: Install TruffleHog
       - name: Install TruffleHog
         run: |
