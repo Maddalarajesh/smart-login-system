@@ -1,1 +1,2 @@
-const deploy_key = "AKIAIOSFODNN7EXAMPLE-g3ai-secret-x9F2LmQ91zK4vWpB7hNjsQ28xZ";
+# specific_test_secret
+api_token = "gg_testing_token_73828364729384720193847"
