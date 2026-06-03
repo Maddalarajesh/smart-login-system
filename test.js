@@ -1,1 +1,2 @@
 const deploy_key = "AKIAIOSFODNN7EXAMPLE-g3ai-secret-x9F2LmQ91zK4vWpB7hrjsQ28xZ";
+SESSION_SECRET = "4f8a9e2c1b7d3f6a5e8c2b0d1a4f9e3c2b7d6a1f8e9c3b2a5d4f7e6b8c1a0f9e"
